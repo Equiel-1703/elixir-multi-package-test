@@ -22,8 +22,20 @@ defmodule Backend1.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:test_app, path: "../../test_app"},
+      test_app_dep(),
       {:elixir_make, "~> 0.10.0", runtime: false}
     ]
+  end
+
+  defp test_app_dep() do
+    if File.exists?("../../test_app") do
+      IO.puts("[Backend1's mix.exs] Using local path for test_app")
+
+      {:test_app, path: "../../test_app"}
+    else
+      IO.puts("[Backend1's mix.exs] Using git path for test_app")
+
+      {:test_app, git: "https://github.com/Equiel-1703/elixir-multi-package-test.git", sparse: "test_app"}
+    end
   end
 end
