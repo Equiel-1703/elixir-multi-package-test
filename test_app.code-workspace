@@ -1,0 +1,7 @@
+{
+	"folders": [
+		{ "path": "test_app" },
+		{ "path": "backends/backend_1" },
+		{ "path": "backends/backend_2" }
+	]
+}
