@@ -7,7 +7,7 @@ defmodule Backend1 do
 
     case :erlang.load_nif(path, 0) do
       :ok ->
-        IO.puts("NIFs loaded successfully.")
+        IO.puts("Backend1 NIFs loaded successfully.")
         :ok
 
       {:error, reason} ->
@@ -18,23 +18,21 @@ defmodule Backend1 do
 
   @impl TestApp.Backend
   def hello() do
-    IO.puts("Hello from Backend1!")
-    IO.puts(
-      "This message means that the backend1 package is being used as the backend for TestApp."
-    )
+    IO.puts("Hello, World from Backend1!")
+    :ok
   end
 
   @impl TestApp.Backend
-  def sum(a, b) when is_integer(a) and is_integer(b) do
-    res = sum_numbers_nif(a, b)
+  def do_math(num) when is_integer(num) do
+    res = do_math_nif(num)
 
-    IO.puts("Sum of #{a} and #{b} is: #{res}")
+    IO.puts("Input number: #{num}, Result from NIF: #{res}")
 
     res
   end
 
   # === NIFs stubs ===
-  def sum_numbers_nif(_a, _b) do
+  def do_math_nif(_num) do
     :erlang.nif_error(:nif_not_loaded)
   end
 end
