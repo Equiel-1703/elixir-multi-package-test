@@ -3,16 +3,16 @@ defmodule TestApp do
 
   def main() do
     IO.puts("Hello from TestApp!")
-
     IO.puts("Checking which backend is being used...")
 
-    case backend() do
-      nil ->
-        IO.puts("No backend configured.")
+    IO.puts("Using backend: #{backend()}")
+    backend().hello()
 
-      backend ->
-        IO.puts("Using backend: #{backend}")
-        backend.hello()
-    end
+    IO.puts("Adding two numbers using the backend's sum function...")
+    _result = backend().sum(3, 5)
+
+    IO.puts("End of TestApp execution.")
+
+    :ok
   end
 end
