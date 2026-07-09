@@ -2,5 +2,5 @@
 defmodule TestApp.Backend do
   @callback hello() :: atom()
 
-  @callback sum(a :: integer(), b :: integer()) :: integer()
+  @callback do_math(num :: integer()) :: integer()
 end
